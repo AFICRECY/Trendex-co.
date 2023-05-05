@@ -45,6 +45,7 @@ This application brings together multiple different kinds of software to create 
 
 To install this project, a knowledge of JavaScript, Node.js, and Express.js, and Sequelize  were required. I had to first install Node.js to my computer and then install the Express and NPM packages. The Express package allowed me to use the express framework in Node.js. It allowed me to create a website which functions as a digital note taker and saves user input as well as deletes it. In order to create this application, Server Side JavaScript as well as Insomnia, SQL, and Sequelize all needed to be used in order to allow a tally of the items, stock, and price, etc information. Additionally the use of GET, POST, PUT, and DELETE Request methods were used. Methods used ranged from, Template Literals, Arrow Functions, Objects, and Functions, Variables, If/Else Statements, and the server side JavaScript. The web application is intended for the user to be able to visualize and update their store stock information. The code below makes this happen. 
 
+<p>&nbsp;</p>
 
 Establishing links and connections
 ```
@@ -71,10 +72,11 @@ sequelize.sync({ force: false }).then(() => {
 ```
 (Above:This code sets up an Express.js server and establishes a connection to a database using Sequelize. It configures the server to listen on a specific port and parse incoming requests in JSON and URL-encoded formats using middleware. It also routes incoming requests to the correct endpoints using the routes defined in the ./routes file. Finally, it syncs the Sequelize models with the database and starts the server, enabling it to receive and respond to incoming requests.)
 
+<p>&nbsp;</p>
+
 Seeded Data Example
 ```
 const { Product } = require('../models');
-
 
 const productData = [
  {
@@ -91,13 +93,15 @@ const productData = [
  },
  ];
 
-
 const seedProducts = () => Product.bulkCreate(productData);
-
 
 module.exports = seedProducts;
 ```
 (Above: The code defines a function called seedProducts that inserts data into the Product table in a database using the Sequelize ORM. It creates an array of product data objects and uses the bulkCreate method of the Product model to insert the data into the table. The function is exported for use in other files, typically used to add initial data to the database when setting up a new application or for testing purposes.)
+
+
+<p>&nbsp;</p>
+
 
 API Routes
 ```
@@ -117,6 +121,7 @@ module.exports = router;
 ```
 (Above: This code exports a router instance created by the Express.js Router method, which defines two routes. The first route uses the router.use method to direct all requests with the '/api' prefix to the routes defined in the apiRoutes file. The second route uses the router.use method without any prefix to handle any other requests that do not match the '/api' prefix. It sends a response with the message "Wrong Route!" as an HTML heading. Finally, the router instance is exported for use in another file.)
 
+<p>&nbsp;</p>
 
 
 GET/POST/PUT/DELETE Request
@@ -206,6 +211,7 @@ The GET routes return Tag data either for all records or for a specific record i
 
 All routes use try/catch blocks to handle errors. If the operation is successful, it responds with a 200 status and the requested data in JSON format. If there is an error, it responds with a 500 status and the error message in JSON format.)
 
+<p>&nbsp;</p>
 
 
 Models File
@@ -260,6 +266,7 @@ The ProductTag.init() method defines the columns of the table along with their d
 
 The configuration object passed to the ProductTag.init() method specifies the database connection using the sequelize object imported from ../config/connection. It also sets various options like timestamps, table name, and model name. Finally, it exports the ProductTag model to be used in other parts of the application.)
 
+<p>&nbsp;</p>
 
 One to Many, Many to Many Relationships
 ```
@@ -306,6 +313,7 @@ The Product model is also linked to the Tag model through a many-to-many relatio
 
 Finally, the module exports an object containing all of these models to be used in other files of the application.)
 
+<p>&nbsp;</p>
 
 Creating and Dropping the Database
 ```
@@ -313,6 +321,8 @@ DROP DATABASE IF EXISTS ecommerce_db;
 CREATE DATABASE ecommerce_db;
 ```
 (Above: This code is used to create a new database named ecommerce_db and if the database already exists, it is first dropped using DROP DATABASE IF EXISTS statement. The purpose of this code is to ensure that a fresh database is created every time it is executed, which can be useful for setting up a new instance of an application or resetting an existing database.)
+
+<p>&nbsp;</p>
 
 Connecting to SQl Database w Sequelize
 ```
