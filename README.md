@@ -353,7 +353,7 @@ With Trendex, product listings are a crucial aspect of ecommerce as they display
 
 A seller can add multiple images, product category, description, pricing, shipping fees, and delivery date to their listing. This way, customers can learn about many aspects of the item in one go. Creating a listing is an effective way for sellers to showcase their products to potential buyers.
 
-Overall, this application enhancesECommerce information availability and streamlines the process and can save any business owner the time and energy of traveling store to store to update item and stock information.  
+Overall, this application enhances ECommerce information availability and streamlines the process and can save any business owner the time and energy of traveling store to store to update item and stock information.  
 
 
 
