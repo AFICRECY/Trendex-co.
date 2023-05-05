@@ -43,7 +43,7 @@ This application brings together multiple different kinds of software to create 
 
 ### Installation:
 
-To install this project, a knowledge of JavaScript, Node.js, and Express.js, and Sequelize  were required. I had to first install Node.js to my computer and then install the Express and NPM packages. The Express package allowed me to use the express framework in Node.js. It allowed me to create a website which functions as a digital note taker and saves user input as well as deletes it. In order to create this application, HTML, CSS, Client-side JavaScript as well as Server Side JavaScript all needed to be used in order to make the page interactive and give the functionality to save/delete user input values. Methods used ranged from, Template Literals, Arrow Functions, Objects, and Functions, Variables, If/Else Statements, and the server side JavaScript. The web application is intended for the user to be able to visit the deployed URL and have the ability to enter whatever Title and Text they would like. They would also have the ability to save their notes to the left column, where they can read them later, or delete them if they want. The code below makes this happen. 
+To install this project, a knowledge of JavaScript, Node.js, and Express.js, and Sequelize  were required. I had to first install Node.js to my computer and then install the Express and NPM packages. The Express package allowed me to use the express framework in Node.js. It allowed me to create a website which functions as a digital note taker and saves user input as well as deletes it. In order to create this application, Server Side JavaScript as well as Insomnia, SQL, and Sequelize all needed to be used in order to allow a tally of the items, stock, and price, etc information. Additionally the use of GET, POST, PUT, and DELETE Request methods were used. Methods used ranged from, Template Literals, Arrow Functions, Objects, and Functions, Variables, If/Else Statements, and the server side JavaScript. The web application is intended for the user to be able to visualize and update their store stock information. The code below makes this happen. 
 
 
 Establishing links and connections
@@ -69,7 +69,7 @@ sequelize.sync({ force: false }).then(() => {
 });
 
 ```
-
+(Above:This code sets up an Express.js server and establishes a connection to a database using Sequelize. It configures the server to listen on a specific port and parse incoming requests in JSON and URL-encoded formats using middleware. It also routes incoming requests to the correct endpoints using the routes defined in the ./routes file. Finally, it syncs the Sequelize models with the database and starts the server, enabling it to receive and respond to incoming requests.)
 
 Seeded Data Example
 ```
@@ -97,7 +97,7 @@ const seedProducts = () => Product.bulkCreate(productData);
 
 module.exports = seedProducts;
 ```
-
+(Above: The code defines a function called seedProducts that inserts data into the Product table in a database using the Sequelize ORM. It creates an array of product data objects and uses the bulkCreate method of the Product model to insert the data into the table. The function is exported for use in other files, typically used to add initial data to the database when setting up a new application or for testing purposes.)
 
 API Routes
 ```
@@ -115,7 +115,7 @@ router.use((req, res) => {
 
 module.exports = router;
 ```
-
+(Above: This code exports a router instance created by the Express.js Router method, which defines two routes. The first route uses the router.use method to direct all requests with the '/api' prefix to the routes defined in the apiRoutes file. The second route uses the router.use method without any prefix to handle any other requests that do not match the '/api' prefix. It sends a response with the message "Wrong Route!" as an HTML heading. Finally, the router instance is exported for use in another file.)
 
 
 
@@ -200,6 +200,13 @@ router.delete('/:id', async (req, res) => {
 
 
 ```
+(Above: This code sets up various routes for a server using the Express.js framework. It includes GET, POST, PUT, and DELETE routes for a Tag model, which is likely a table in a database.
+
+The GET routes return Tag data either for all records or for a specific record identified by an ID parameter. The POST route creates a new Tag record in the database using data from the request body. The PUT route updates an existing Tag record with new data specified in the request body. The DELETE route deletes a Tag record identified by an ID parameter.
+
+All routes use try/catch blocks to handle errors. If the operation is successful, it responds with a 200 status and the requested data in JSON format. If there is an error, it responds with a 500 status and the error message in JSON format.)
+
+
 
 Models File
 ```
@@ -247,6 +254,84 @@ ProductTag.init(
  }
 );
 ```
+(Above: This code defines a Sequelize model called ProductTag, which represents the join table between the Product and Tag tables in a database. The ProductTag model inherits from the Model class and defines the fields that correspond to the columns in the ProductTag table.
+
+The ProductTag.init() method defines the columns of the table along with their data types and constraints. The id field is an auto-incrementing integer that serves as the primary key for the table. The product_id and tag_id fields are foreign keys that reference the id columns in the Product and Tag tables, respectively.
+
+The configuration object passed to the ProductTag.init() method specifies the database connection using the sequelize object imported from ../config/connection. It also sets various options like timestamps, table name, and model name. Finally, it exports the ProductTag model to be used in other parts of the application.)
+
+
+One to Many, Many to Many Relationships
+```
+const Product = require('./Product');
+const Category = require('./Category');
+const Tag = require('./Tag');
+const ProductTag = require('./ProductTag');
+
+
+Product.belongsTo(Category,{foreignKey: "category_id"})
+
+
+Category.hasMany(Product, {foreignKey: "category_id", onDelete: "CASCADE"})
+
+
+Product.belongsToMany(Tag, {
+ through: {
+   model: ProductTag,
+ },
+});
+
+
+Tag.belongsToMany(Product, {
+ through: {
+   model: ProductTag,
+ },
+});
+
+
+module.exports = {
+ Product,
+ Category,
+ Tag,
+ ProductTag,
+};
+
+
+```
+(Above: This code exports an object containing the models for Product, Category, Tag, and ProductTag, which are defined in separate files.
+
+The Product model is linked to the Category model through a foreign key constraint, which is set using the belongsTo method of Sequelize. The Category model has a one-to-many relationship with the Product model, as specified using the hasMany method.
+
+The Product model is also linked to the Tag model through a many-to-many relationship, which is implemented using a junction table called ProductTag. This relationship is established using the belongsToMany method of Sequelize for both models.
+
+Finally, the module exports an object containing all of these models to be used in other files of the application.)
+
+
+Creating and Dropping the Database
+```
+DROP DATABASE IF EXISTS ecommerce_db;
+CREATE DATABASE ecommerce_db;
+```
+(Above: This code is used to create a new database named ecommerce_db and if the database already exists, it is first dropped using DROP DATABASE IF EXISTS statement. The purpose of this code is to ensure that a fresh database is created every time it is executed, which can be useful for setting up a new instance of an application or resetting an existing database.)
+
+Connecting to SQl Database w Sequelize
+```
+require('dotenv').config();
+const Sequelize = require('sequelize');
+
+
+const sequelize = process.env.JAWSDB_URL
+ ? new Sequelize(process.env.JAWSDB_URL)
+ : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+     host: 'localhost',
+     dialect: 'mysql',
+     dialectOptions: {
+       decimalNumbers: true,
+     },
+   });
+```
+(Above: This code connects to a MySQL database using Sequelize and uses the dotenv library to load environment variables. It checks if a JAWSDB_URL variable exists and creates a Sequelize instance using the URL if it does, or uses DB_NAME, DB_USER, and DB_PASSWORD environment variables to create a Sequelize instance for a local database. The code specifies the host as 'localhost' and the dialect as 'mysql'. The dialectOptions object is used to pass additional options to the MySQL driver, such as setting the decimalNumbers option to true to handle decimal values properly.)
+
 
 <p>&nbsp;</p>
 
