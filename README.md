@@ -1,7 +1,9 @@
-# Trendex-co. (E-Commerce Back End)
+# Trendex-co. 
+## (E-Commerce Back End)
 
+<p>&nbsp;</p>
 
-## Technology Used:
+## Technology Used: 
 | Technology Used         | Resource URL           |
 | ------------- |:-------------:|
 | Git | [https://git-scm.com/](https://git-scm.com/)     |
@@ -12,6 +14,8 @@
 |  SQL   |    [https://www.mysql.com/](https://www.mysql.com/)   |
 | Insomnia   | [https://insomnia.rest/](https://insomnia.rest/)     |
 
+
+<p>&nbsp;</p>
 
 
 ## Description:
@@ -25,11 +29,16 @@ The electronics industry's largest sector is internet retail, or e-commerce, whi
 
 This application brings together multiple different kinds of software to create a ECommerce Back End application called Trendex-Co. Trendex-Co. Is a back end e-commerce database which allows the store inventory to live in a safe and dependable cloud-like database. Trendex is easily navigable and has functionalities set up to where store items, their prices, their stock amount, as well as other information can be acquired, updated, and deleted easily through some get routes. The application Insomnia was utilized for the inventory to be accessed separate from the code. Once the user, potentially a business owner starts their server they are able to access all of these features through Insomnia.
 
+<p>&nbsp;</p>
+
+
 ## Table of Contents:
 * Installation (JavaScript, Node.js, NPM Packages, Template Literals, Arrow Functions, Objects, and Functions,SQL, Sequelize, Dotenv, Express.js)
 * Usage
 * Credits
 * License
+
+<p>&nbsp;</p>
 
 
 ### Installation:
@@ -239,6 +248,7 @@ ProductTag.init(
 );
 ```
 
+<p>&nbsp;</p>
 
 
 ### Usage: 
@@ -249,4 +259,46 @@ With Trendex, product listings are a crucial aspect of ecommerce as they display
 A seller can add multiple images, product category, description, pricing, shipping fees, and delivery date to their listing. This way, customers can learn about many aspects of the item in one go. Creating a listing is an effective way for sellers to showcase their products to potential buyers.
 
 Overall, this application enhancesECommerce information availability and streamlines the process and can save any business owner the time and energy of traveling store to store to update item and stock information.  
+
+
+
+<p>&nbsp;</p>
+
+
+## Credits
+
+* Express Installation: https://expressjs.com/en/starter/installing.html
+*Express API: https://expressjs.com/en/api.html
+* GET & POST Requests: https://www.diffen.com/difference/GET-vs-POST-HTTP-Requests
+* Error Help: https://stackoverflow.com/questions/14949118/node-js-error-cannot-find-module-express
+*Insomnia: https://insomnia.rest/ 
+*Express Routing Guide: https://expressjs.com/en/guide/routing.html
+* Error in Sequelize: https://stackoverflow.com/questions/61515940/error-in-sequelize-name-sequelizeeagerloadingerror
+* Eslint Installation: https://stackoverflow.com/questions/49227262/how-to-install-eslint-globally
+* Express Middleware: https://expressjs.com/en/guide/using-middleware.html
+
+
+
+
+
+### License:
+MIT License
+
+Copyright (c) [2023] [Afi Nkhume-Crecy]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+
+
+
 
